@@ -15,6 +15,8 @@ public abstract class Person {
     private Long id;
     private String name;
     private String lastName;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
 
     public Person(String name, String lastName) {
         this.name = name;

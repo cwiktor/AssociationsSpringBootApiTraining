@@ -1,6 +1,8 @@
 package com.asbt.AssociationsSpringBootApiTraining.controller;
 
+import com.asbt.AssociationsSpringBootApiTraining.model.Address;
 import com.asbt.AssociationsSpringBootApiTraining.model.Person;
+import com.asbt.AssociationsSpringBootApiTraining.service.AddressService;
 import com.asbt.AssociationsSpringBootApiTraining.service.PersonService;
 import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
@@ -13,8 +15,10 @@ import java.util.List;
 @RequestMapping("/person")
 public class PersonController {
     private final PersonService personService;
-    public PersonController(PersonService personService) {
+    private final AddressService addressService;
+    public PersonController(PersonService personService, AddressService addressService) {
         this.personService = personService;
+        this.addressService = addressService;
     }
     @GetMapping("/getAll")
     public ResponseEntity<List<Person>> getAllPersons(){
@@ -41,5 +45,15 @@ public class PersonController {
     public ResponseEntity<Person> deletePersonById(@PathVariable("id") Long id){
         personService.deletePersonById(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @PutMapping("/update/{personId}/address/{addressId}")
+    public ResponseEntity<Person> addAddressToPerson(
+            @PathVariable("personId") Long personId,
+            @PathVariable("addressId") Long addressId){
+        Person person = personService.getPersonById(personId);
+        Address address = addressService.getAddressById(addressId);
+        person.setAddress(address);
+        personService.updatePerson(person);
+        return new ResponseEntity<>(person, HttpStatus.OK);
     }
 }

@@ -1,6 +1,8 @@
 package com.asbt.AssociationsSpringBootApiTraining.controller;
 
+import com.asbt.AssociationsSpringBootApiTraining.model.Subject;
 import com.asbt.AssociationsSpringBootApiTraining.model.Teacher;
+import com.asbt.AssociationsSpringBootApiTraining.service.SubjectService;
 import com.asbt.AssociationsSpringBootApiTraining.service.TeacherService;
 import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;

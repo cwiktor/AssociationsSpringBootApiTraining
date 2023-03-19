@@ -1,5 +1,6 @@
 package com.asbt.AssociationsSpringBootApiTraining.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,6 +19,9 @@ public class Address {
     private String ZipCode;
     private String Street;
     private String number;
+    @JsonIgnore
+    @OneToOne(mappedBy = "address")
+    private Person person;
 
     public Address(String country, String city, String zipCode, String street, String number) {
         this.country = country;

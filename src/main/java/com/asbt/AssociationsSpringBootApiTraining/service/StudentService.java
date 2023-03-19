@@ -1,5 +1,6 @@
 package com.asbt.AssociationsSpringBootApiTraining.service;
 
+import com.asbt.AssociationsSpringBootApiTraining.exceptions.StudentNotFoundException;
 import com.asbt.AssociationsSpringBootApiTraining.model.Student;
 import com.asbt.AssociationsSpringBootApiTraining.repository.StudentRepository;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class StudentService {
         return studentRepository.save(student);
     }
     public Student getStudentById(Long StudentId){
-        return studentRepository.getStudentById(StudentId);
+        return studentRepository.getStudentById(StudentId).orElseThrow(()->new StudentNotFoundException("Student not found"));
     }
     public List<Student> getAllStudents(){
         List<Student> studentList = studentRepository.findAll();

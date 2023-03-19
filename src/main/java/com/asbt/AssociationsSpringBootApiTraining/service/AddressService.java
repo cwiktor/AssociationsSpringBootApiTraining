@@ -1,5 +1,6 @@
 package com.asbt.AssociationsSpringBootApiTraining.service;
 
+import com.asbt.AssociationsSpringBootApiTraining.exceptions.AddressNotFoundException;
 import com.asbt.AssociationsSpringBootApiTraining.model.Address;
 import com.asbt.AssociationsSpringBootApiTraining.repository.AddressRepository;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class AddressService {
         return addressRepository.save(address);
     }
     public Address getAddressById(Long addressId){
-        return addressRepository.getAddressById(addressId);
+        return addressRepository.getAddressById(addressId).orElseThrow(()-> new AddressNotFoundException("Address not found"));
     }
     public List<Address> getAllAddresss(){
         List<Address> addressList = addressRepository.findAll();

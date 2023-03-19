@@ -1,5 +1,6 @@
 package com.asbt.AssociationsSpringBootApiTraining.service;
 
+import com.asbt.AssociationsSpringBootApiTraining.exceptions.TeacherNotFoundException;
 import com.asbt.AssociationsSpringBootApiTraining.model.Teacher;
 import com.asbt.AssociationsSpringBootApiTraining.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class TeacherService {
         return teacherRepository.save(teacher);
     }
     public Teacher getTeacherById(Long teacherId){
-        return teacherRepository.getTeacherById(teacherId);
+        return teacherRepository.getTeacherById(teacherId).orElseThrow(()-> new TeacherNotFoundException("Teacher not found"));
     }
     public List<Teacher> getAllTeachers(){
         List<Teacher> teacherList = teacherRepository.findAll();
