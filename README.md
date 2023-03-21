@@ -1,4 +1,4 @@
-# University REST Api
+# University REST API
 A simple example of programming association in springboot.
 
 ## Table of contents
