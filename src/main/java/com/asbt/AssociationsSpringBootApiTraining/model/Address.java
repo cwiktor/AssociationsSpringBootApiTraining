@@ -16,8 +16,8 @@ public class Address {
     private Long id;
     private String country;
     private String city;
-    private String ZipCode;
-    private String Street;
+    private String zipCode;
+    private String street;
     private String number;
     @JsonIgnore
     @OneToOne(mappedBy = "address")
@@ -26,8 +26,8 @@ public class Address {
     public Address(String country, String city, String zipCode, String street, String number) {
         this.country = country;
         this.city = city;
-        ZipCode = zipCode;
-        Street = street;
+        this.zipCode = zipCode;
+        this.street = street;
         this.number = number;
     }
 }
